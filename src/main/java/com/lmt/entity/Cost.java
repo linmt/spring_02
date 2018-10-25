@@ -18,6 +18,23 @@ public class Cost implements Serializable {
     private Timestamp creat_time;
     private Timestamp start_time;
     private String cost_type;
+
+    public Cost() {
+    }
+
+    public Cost(Integer cost_id, String name, Long base_duration, Double base_cost, Double unit_cost, String status, String descr, Timestamp creat_time, Timestamp start_time, String cost_type) {
+        this.cost_id = cost_id;
+        this.name = name;
+        this.base_duration = base_duration;
+        this.base_cost = base_cost;
+        this.unit_cost = unit_cost;
+        this.status = status;
+        this.descr = descr;
+        this.creat_time = creat_time;
+        this.start_time = start_time;
+        this.cost_type = cost_type;
+    }
+
     public Integer getCost_id() {
         return cost_id;
     }
@@ -89,5 +106,4 @@ public class Cost implements Serializable {
                 + ", name=" + name + ", start_time=" + start_time + ", status="
                 + status + ", unit_cost=" + unit_cost + "]";
     }
-
 }

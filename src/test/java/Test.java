@@ -3,6 +3,7 @@ import com.lmt.entity.Cost;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -13,10 +14,15 @@ public class Test {
         String conf="classpath:applicationContext.xml";
         ApplicationContext ac=new ClassPathXmlApplicationContext(conf);
 
+//        CostDao costdao=ac.getBean("costDao",CostDao.class);
+//        List<Cost> list=costdao.findAll();
+//        for (Cost cost:list) {
+//            System.out.println(cost.getName());
+//        }
+
         CostDao costdao=ac.getBean("costDao",CostDao.class);
-        List<Cost> list=costdao.findAll();
-        for (Cost cost:list) {
-            System.out.println(cost.getName());
-        }
+        Timestamp ts =Timestamp.valueOf("2018-09-23 20:03:48");
+        Cost cost=new Cost(null,"包月",null,1000.00,null,"1","包月很爽",ts,null,"1");
+        costdao.save(cost);
     }
 }

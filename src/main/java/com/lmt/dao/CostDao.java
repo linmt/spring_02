@@ -21,4 +21,14 @@ public class CostDao {
         List<Cost> list=template.query(sql,rowMapper);
         return list;
     }
+
+    public void save(Cost cost){
+        if(cost == null){
+            return;
+        }
+        String sql = "insert into cost values(cost_seq.nextval,?,?,?,?,'1',?,sysdate,null,?)";
+        Object[] param={cost.getName(),cost.getBase_duration(),cost.getBase_cost(),cost.getUnit_cost(),
+                        cost.getDescr(),cost.getCost_type()};
+        template.update(sql,param);
+    }
 }
