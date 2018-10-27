@@ -15,10 +15,10 @@
     <title>达内－NetCTOSS</title>
     <!--
         路径问题二
-        当前路径是web/findCost.do   图片的路径是：web/images/logo.png
+        当前路径是web/cost/list.form  图片的路径是：web/images/logo.png
     -->
-    <link type="text/css" rel="stylesheet" media="all" href="styles/global.css" />
-    <link type="text/css" rel="stylesheet" media="all" href="styles/global_color.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="../../styles/global.css" />
+    <link type="text/css" rel="stylesheet" media="all" href="../../styles/global_color.css" />
     <script language="javascript" type="text/javascript">
         //排序按钮的点击事件
         function sort(btnObj) {
@@ -68,7 +68,7 @@
 <!--导航区域结束-->
 <!--主要区域开始-->
 <div id="main">
-    <form action="findCost.do" method="get">
+    <form action="cost/list.form" method="get">
         <!--排序-->
         <div class="search_add">
             <div>
@@ -135,20 +135,22 @@
         <div id="pages">
             <c:if test="${page==1}"><a href="#">上一页</a></c:if>
             <c:if test="${page>1}">
-                <a href="findCost.do?page=${page-1}">上一页</a>
+                <a href="list.form?page=${page-1}">上一页</a>
             </c:if>
             <!--不能所有页数都显示出来-->
-            <c:forEach var="p" begin="${page}" end="${page}">
-                <c:if test="${p==page}">
-                    <a href="findCost.do?page=${p}" class="current_page">${p}</a>
-                </c:if>
-                <c:if test="${p!=page}">
-                    <a href="findCost.do?page=${p}">${p}</a>
+            <c:forEach var="p" begin="${page-1}" end="${page+1}">
+                <c:if test="${p!=0&&p<=totalPage}">
+                    <c:if test="${p==page}">
+                        <a href="list.form?page=${p}" class="current_page">${p}</a>
+                    </c:if>
+                    <c:if test="${p!=page}">
+                        <a href="list.form?page=${p}">${p}</a>
+                    </c:if>
                 </c:if>
             </c:forEach>
             <c:if test="${page==totalPage}"><a href="#">下一页</a></c:if>
             <c:if test="${page<totalPage}">
-                <a href="findCost.do?page=${page+1}">下一页</a>
+                <a href="list.form?page=${page+1}">下一页</a>
             </c:if>
             共${totalPage}页
             跳转到 <input type="text" id="skip_to_page" name="page" style="width:25px"/> 页
